@@ -1,6 +1,5 @@
 package com.fariz.carrental.controller;
 
-import com.fariz.carrental.exceptionhadling.NoSuchAgency;
 import com.fariz.carrental.messages.Message;
 import com.fariz.carrental.model.Admin;
 import com.fariz.carrental.model.Agency;

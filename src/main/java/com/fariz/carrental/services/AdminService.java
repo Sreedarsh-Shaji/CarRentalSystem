@@ -1,7 +1,7 @@
 package com.fariz.carrental.services;
 
 import com.fariz.carrental.dto.AgencyRepository;
-import com.fariz.carrental.exceptionhadling.NoSuchAgency;
+import com.fariz.carrental.exceptionhandling.NoSuchAgency;
 import com.fariz.carrental.messages.Message;
 import com.fariz.carrental.messages.MessageType;
 import com.fariz.carrental.model.Admin;
@@ -11,7 +11,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.Date;
 import java.util.List;

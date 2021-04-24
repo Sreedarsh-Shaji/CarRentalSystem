@@ -1,4 +1,4 @@
-package com.fariz.carrental.exceptionhadling;
+package com.fariz.carrental.exceptionhandling;
 
 import com.fariz.carrental.messages.Message;
 import com.fariz.carrental.messages.MessageType;
