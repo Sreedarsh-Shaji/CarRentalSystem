@@ -1,15 +1,13 @@
 package com.fariz.carrental.controller;
 
 import com.fariz.carrental.messages.Message;
-import com.fariz.carrental.model.Admin;
-import com.fariz.carrental.model.Agency;
+import com.fariz.carrental.model.*;
+import com.fariz.carrental.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import com.fariz.carrental.services.AdminService;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -25,16 +23,17 @@ public class AdminController {
 
     @Autowired
     private AdminService service;
-    List<AdminController> dummyAdmins = new ArrayList<AdminController>();
 
-    @RequestMapping(method = RequestMethod.GET,value = "/addDummyAdmins")
-    public String addAll()
-    {
-        Admin a=new Admin(2,"Super Admin","admin@carrentals.com","Admin123",new Date(),new Date());
-        service.save(a);
-        logger.info("Dummy admins added!!!");
-        return ("Dummy admins added!!!");
-    }
+    @Autowired
+    AgencyService agencyService;
+    @Autowired
+    OfficesService officesService;
+    @Autowired
+    TripsServices tripsServices;
+    @Autowired
+    UserService userService;
+    @Autowired
+    VehicleService vehicleService;
 
     @RequestMapping(method = RequestMethod.POST , value = "/viewAllAdmins")
     public List<Admin> loginAdmin()
@@ -49,6 +48,34 @@ public class AdminController {
         return service.adminSeeAgencyList();
     }
 
+    //Gets the list of all offices
+    @RequestMapping(method = RequestMethod.GET , value = "/viewAllOffices")
+    public List<Offices> getAllOffices()
+    {
+        return service.adminSeeOfficesList();
+    }
+
+    //Gets the list of all trips
+    @RequestMapping(method = RequestMethod.GET , value = "/viewAllTrips")
+    public List<Trips> getAllTrips()
+    {
+        return service.adminSeeTripsList();
+    }
+
+    //Gets the list of all trips
+    @RequestMapping(method = RequestMethod.GET , value = "/viewAllUser")
+    public List<User> getAllUsers()
+    {
+        return service.adminSeeUserList();
+    }
+
+    //Gets the list of all vehicles
+    @RequestMapping(method = RequestMethod.GET , value = "/viewAllVehicles")
+    public List<Vehicle> getAllVehicles()
+    {
+        return service.adminSeeVehicleList();
+    }
+
     //Approve an agency
     @RequestMapping(method = RequestMethod.GET , value = "/approveAgency/{id}")
     public Message approveAgency(@PathVariable int id)
@@ -56,7 +83,6 @@ public class AdminController {
         service.approveAgency(id);
         return Message.getMessage();
     }
-
 
     //Creates set of admins
     @PostConstruct

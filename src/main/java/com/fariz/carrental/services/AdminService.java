@@ -1,12 +1,10 @@
 package com.fariz.carrental.services;
 
-import com.fariz.carrental.dto.AgencyRepository;
+import com.fariz.carrental.dto.*;
 import com.fariz.carrental.exceptionhandling.NoSuchAgency;
 import com.fariz.carrental.messages.Message;
 import com.fariz.carrental.messages.MessageType;
-import com.fariz.carrental.model.Admin;
-import com.fariz.carrental.dto.AdminRepository;
-import com.fariz.carrental.model.Agency;
+import com.fariz.carrental.model.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +24,15 @@ public class AdminService {
     @Autowired
     private AgencyRepository agencyRepository;
 
+    @Autowired
+    private OfficesRepository officesRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private VehicleRepository vehicleRepository;
+    @Autowired
+    private TripsRepository tripsRepository;
+
     public List<Admin> getAllAdmins()
     {
         return repo.findAll();
@@ -35,6 +42,26 @@ public class AdminService {
     public List<Agency> adminSeeAgencyList()
     {
         return agencyRepository.findAll();
+    }
+
+    public List<Offices> adminSeeOfficesList()
+    {
+        return officesRepository.findAll();
+    }
+
+    public List<Trips> adminSeeTripsList()
+    {
+        return tripsRepository.findAll();
+    }
+
+    public List<User> adminSeeUserList()
+    {
+        return userRepository.findAll();
+    }
+
+    public List<Vehicle> adminSeeVehicleList()
+    {
+        return vehicleRepository.findAll();
     }
 
     public void approveAgency(int id)
