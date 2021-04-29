@@ -6,7 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan({"com.fariz.carrental.controller,com.fariz.carrental.services,com.fariz.carrental.model,com.fariz.carrental.dto,com.fariz.carrental.messages"})
+@ComponentScan({"com.fariz.carrental.controller," +
+		"com.fariz.carrental.services," +
+		"com.fariz.carrental.model," +
+		"com.fariz.carrental.dto," +
+		"com.fariz.carrental.messages," +
+		"com.fariz.carrental.swagger"})
 public class CarrentalApplication {
 
 	public static void main(String[] args) {

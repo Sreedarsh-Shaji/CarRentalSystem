@@ -15,6 +15,4 @@ public class NoSuchAgency extends RuntimeException {
         Message.setMessage(MessageType.ERROR,"The entity with specified id doesn't exist!",new Date());
     }
 
-
-
 }
