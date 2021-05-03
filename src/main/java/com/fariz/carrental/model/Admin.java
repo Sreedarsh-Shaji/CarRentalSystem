@@ -23,7 +23,6 @@ public class Admin {
 
     @Getter
     @Setter
-    @Column(nullable = false , unique = true)
     private String adminEmail;
 
     @Getter

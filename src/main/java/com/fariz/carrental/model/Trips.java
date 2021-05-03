@@ -19,12 +19,17 @@ public class Trips {
     @Getter @Setter
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "User", referencedColumnName = "userId")
-    private User UserId;
+    private User User;
+
+    @Getter @Setter
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Agency", referencedColumnName = "agencyId")
+    private Agency agency;
 
     @Getter @Setter
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Vehicle", referencedColumnName = "vehicleId")
-    private Vehicle vehicleId;
+    private Vehicle vehicle;
 
     @Getter @Setter
     private int pickupOfficeLocation;

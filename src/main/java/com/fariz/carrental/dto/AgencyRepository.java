@@ -8,5 +8,7 @@ import java.util.List;
 
 public interface AgencyRepository extends JpaRepository<Agency,Integer> {
 
-    List<Agency> findAllByEmail(String email);
+    public List<Agency> findAllByEmail(String email);
+    public Agency findByEmail(String email);
+
 }

@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @RestController
@@ -23,7 +21,6 @@ public class AdminController {
 
     @Autowired
     private AdminService service;
-
     @Autowired
     AgencyService agencyService;
     @Autowired
@@ -35,12 +32,6 @@ public class AdminController {
     @Autowired
     VehicleService vehicleService;
 
-    @RequestMapping(method = RequestMethod.POST , value = "/viewAllAdmins")
-    public List<Admin> loginAdmin()
-    {
-        return null;
-    }
-
     //Gets the list of all agencies
     @RequestMapping(method = RequestMethod.GET , value = "/viewAllAgencies")
     public List<Agency> getAllAgencies()
@@ -50,16 +41,31 @@ public class AdminController {
 
     //Gets the list of all offices
     @RequestMapping(method = RequestMethod.GET , value = "/viewAllOffices")
-    public List<Offices> getAllOffices()
+    public List<Office> getAllOffices()
     {
         return service.adminSeeOfficesList();
     }
 
     //Gets the list of all trips
     @RequestMapping(method = RequestMethod.GET , value = "/viewAllTrips")
-    public List<Trips> getAllTrips()
+    public Map<String,Object> getAllTrips()
     {
-        return service.adminSeeTripsList();
+        Map<String,Object> tripDetails = new HashMap<String, Object>();
+
+        List<Trips> trips = service.adminSeeTripsList();
+
+        for (Trips temp:trips)
+        {
+            Map<String,Object> trip_data =  new HashMap<String, Object>();
+
+            trip_data.put("trip_details",temp);
+            trip_data.put("start_location",officesService.getOffice(temp.getPickupOfficeLocation()));
+            trip_data.put("end_location",officesService.getOffice(temp.getPickupOfficeLocation()));
+
+            tripDetails.put(temp.getTripId()+"",trip_data);
+        }
+
+        return tripDetails;
     }
 
     //Gets the list of all trips

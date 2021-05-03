@@ -2,6 +2,7 @@ package com.fariz.carrental.model;
 
 
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,11 +10,13 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@DynamicUpdate // Will update instead of new row
 @Entity
 public class Agency {
 
     @Id
     @Getter @Setter
+    @Column(unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int agencyId;
 

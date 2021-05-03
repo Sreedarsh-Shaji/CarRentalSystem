@@ -44,7 +44,7 @@ public class AdminService {
         return agencyRepository.findAll();
     }
 
-    public List<Offices> adminSeeOfficesList()
+    public List<Office> adminSeeOfficesList()
     {
         return officesRepository.findAll();
     }

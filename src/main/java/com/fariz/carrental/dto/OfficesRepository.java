@@ -1,9 +1,14 @@
 package com.fariz.carrental.dto;
 
 import com.fariz.carrental.model.Agency;
-import com.fariz.carrental.model.Offices;
+import com.fariz.carrental.model.Office;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface OfficesRepository extends JpaRepository<Offices,Integer> {
+import java.util.List;
+
+public interface OfficesRepository extends JpaRepository<Office,Integer> {
+
+    public List<Office> findAllByEmailId(String email);
+    public Office findByEmailId(String email);
 
 }

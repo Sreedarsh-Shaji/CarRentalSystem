@@ -9,12 +9,16 @@ import java.util.Date;
 @AllArgsConstructor
 @ToString
 @Entity
-public class Offices {
+public class Office {
 
     @Getter @Setter
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int officeId;
+
+    @Getter @Setter
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Agency", referencedColumnName = "agencyId")
+    private Agency agency;
 
     @Getter @Setter
     private String officeAddress;
@@ -29,7 +33,7 @@ public class Offices {
     private String emailId;
 
     @Getter @Setter
-    private String agency;
+    private String password;
 
     @Getter @Setter
     private String coordinates;
