@@ -3,6 +3,8 @@ package com.fariz.carrental.controller;
 import com.fariz.carrental.messages.Message;
 import com.fariz.carrental.model.*;
 import com.fariz.carrental.services.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +17,8 @@ import java.util.*;
 @Slf4j
 @RestController
 @RequestMapping(value = "api/v1/admin")
+@Api( value = "Admin Controller")
+@CrossOrigin(origins = "http://localhost:3010", maxAge = 3600)
 public class AdminController {
 
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
@@ -33,6 +37,7 @@ public class AdminController {
     VehicleService vehicleService;
 
     //Gets the list of all agencies
+    @ApiOperation(value = "Get all agencies")
     @RequestMapping(method = RequestMethod.GET , value = "/viewAllAgencies")
     public List<Agency> getAllAgencies()
     {
@@ -88,6 +93,25 @@ public class AdminController {
     {
         service.approveAgency(id);
         return Message.getMessage();
+    }
+
+    @ApiOperation( value = "Admin authentication")
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET , value = "/adminLogin/{username}/{password}")
+    public Admin adminLogIn(@PathVariable String username,@PathVariable String password)
+    {
+        List<Admin> admins = service.getAllAdmins();
+        Admin retAdmin = null;
+
+        for (Admin temp : admins)
+        {
+            if(temp.getAdminEmail().equals(username)
+                    && temp.getAdminPassword().equals(password))
+            {
+                retAdmin = temp;
+            }
+        }
+        return retAdmin;
     }
 
     //Creates set of admins
