@@ -1,13 +1,13 @@
 package com.fariz.carrental.controller;
 
+import com.fariz.carrental.dao.Admin;
 import com.fariz.carrental.dao.User;
 import com.fariz.carrental.services.*;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -42,13 +42,13 @@ public class UserController {
 
             List<User> users = new ArrayList<User>();
 
-            users.add(new User(1,"Aneesh","admin@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
-            users.add(new User(2,"Anju","Anju@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
-            users.add(new User(3,"Sumi","Sumi@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
-            users.add(new User(4,"Sudheesh","sudheesh@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
-            users.add(new User(5,"Sreedarsh","sreedarsh@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
+            users.add(new User(1,"meekha","meekha@carrentalsals.com","meekha123","9836546210","License12/A/1","true",new Date(),new Date()));
+            users.add(new User(2,"Deepthi","deepthi@carrentals.com","deepthi123","9866543210","License12/A/1","true",new Date(),new Date()));
+            users.add(new User(3,"Meenu","Meenu@carrentals.com","Meenu123","9876543880","License12/A/1","true",new Date(),new Date()));
+            users.add(new User(4,"Basheer","basheer@carrentals.com","bashi123","9876540010","License12/A/1","true",new Date(),new Date()));
+            users.add(new User(5,"Sruthi","sruthi@carrentals.com","sruthi123","9006543210","License12/A/1","true",new Date(),new Date()));
 
-            users.forEach(temp -> userService.addNewAgency(temp));//lambda
+            users.forEach(temp -> userService.addNewUser(temp));//lambda
 
             logger.info("Added 5 Users using @PostConstruct annotation!!!");
 
@@ -57,5 +57,28 @@ public class UserController {
         {
 
         }
+    }
+    @ApiOperation( value = "User authentication")
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET , value = "/userLogin/{username}/{password}")
+    public String userLogIn(@PathVariable String username, @PathVariable String password)
+    {
+        List<User> users = userService.getAllUsers();
+        User retUser = null;
+        String flag="";
+        for (User temp : users)
+        {
+            if(temp.getEmail().equals(username)
+                    && temp.getPassword().equals(password))
+            {
+                retUser = temp;
+                flag="VALID CREDENTIAL";
+            }
+            else
+            { flag="INVALID CREDENTIAL";}
+
+
+        }
+    return flag;
     }
 }
