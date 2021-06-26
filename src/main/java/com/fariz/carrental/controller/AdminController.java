@@ -1,7 +1,7 @@
 package com.fariz.carrental.controller;
 
 import com.fariz.carrental.messages.Message;
-import com.fariz.carrental.model.*;
+import com.fariz.carrental.dao.*;
 import com.fariz.carrental.services.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -122,11 +122,11 @@ public class AdminController {
 
             List<Admin> admins = new ArrayList<Admin>();
 
-            admins.add(new Admin(1,"Super Admin","admin@carrentals.com","Admin123",new Date(),new Date()));
-            admins.add(new Admin(2,"Anju","Anju@carrentals.com","Anju123",new Date(),new Date()));
-            admins.add(new Admin(3,"Sumi","Sumi@carrentals.com","Sumi123",new Date(),new Date()));
-            admins.add(new Admin(4,"Sudheesh","sudheesh@carrentals.com","Sudheesh123",new Date(),new Date()));
-            admins.add(new Admin(5,"Sreedarsh","sreedarsh@carrentals.com","sreedarsh123",new Date(),new Date()));
+            admins.add(new Admin(UUID.randomUUID() ,"Super Admin","admin@carrentals.com","Admin123",new Date(),new Date()));
+            admins.add(new Admin(UUID.randomUUID(),"Anju","Anju@carrentals.com","Anju123",new Date(),new Date()));
+            admins.add(new Admin(UUID.randomUUID(),"Sumi","Sumi@carrentals.com","Sumi123",new Date(),new Date()));
+            admins.add(new Admin(UUID.randomUUID(),"Sudheesh","sudheesh@carrentals.com","Sudheesh123",new Date(),new Date()));
+            admins.add(new Admin(UUID.randomUUID(),"Sreedarsh","sreedarsh@carrentals.com","sreedarsh123",new Date(),new Date()));
 
             admins.forEach(temp -> service.save(temp));//lambda
 

@@ -1,11 +1,11 @@
 package com.fariz.carrental.services;
 
-import com.fariz.carrental.dto.AgencyRepository;
-import com.fariz.carrental.dto.OfficesRepository;
+import com.fariz.carrental.jparepositories.AgencyRepository;
+import com.fariz.carrental.jparepositories.OfficesRepository;
 import com.fariz.carrental.messages.Message;
 import com.fariz.carrental.messages.MessageType;
-import com.fariz.carrental.model.Agency;
-import com.fariz.carrental.model.Office;
+import com.fariz.carrental.dao.Agency;
+import com.fariz.carrental.dao.Office;
 import com.fariz.carrental.utils.Time;
 import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;

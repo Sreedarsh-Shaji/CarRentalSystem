@@ -1,6 +1,8 @@
-package com.fariz.carrental.model;
+package com.fariz.carrental.dao;
+
 
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,13 +10,15 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@DynamicUpdate // Will update instead of new row
 @Entity
-public class User {
+public class Agency {
 
-    @Getter @Setter
     @Id
+    @Getter @Setter
+    @Column(unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userId;
+    private int agencyId;
 
     @Getter @Setter
     private String name;
@@ -26,21 +30,16 @@ public class User {
     private String password;
 
     @Getter @Setter
-    private String phoneNumber;
+    private String phone;
 
     @Getter @Setter
-    private String licenseNumber;
-
-    @Column(name="status", columnDefinition="varchar(255) default 'false'")
-    @Getter @Setter
-    private String status;
-
     @Temporal(TemporalType.TIMESTAMP)
-    @Getter @Setter
     Date creationDateTime;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Getter @Setter
+    @Temporal(TemporalType.TIMESTAMP)
     Date lastLogin;
 
+    @Getter @Setter
+    private boolean approved;
 }

@@ -1,7 +1,6 @@
-package com.fariz.carrental.dto;
+package com.fariz.carrental.jparepositories;
 
-import com.fariz.carrental.model.Admin;
-import com.fariz.carrental.model.Agency;
+import com.fariz.carrental.dao.Agency;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

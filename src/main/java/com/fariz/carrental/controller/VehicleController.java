@@ -1,9 +1,8 @@
 package com.fariz.carrental.controller;
 
-import com.fariz.carrental.model.Agency;
-import com.fariz.carrental.model.Office;
-import com.fariz.carrental.model.User;
-import com.fariz.carrental.model.Vehicle;
+import com.fariz.carrental.dao.Agency;
+import com.fariz.carrental.dao.Office;
+import com.fariz.carrental.dao.Vehicle;
 import com.fariz.carrental.services.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

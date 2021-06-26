@@ -1,8 +1,7 @@
 package com.fariz.carrental.services;
 
-import com.fariz.carrental.dto.AgencyRepository;
-import com.fariz.carrental.dto.VehicleRepository;
-import com.fariz.carrental.model.Vehicle;
+import com.fariz.carrental.jparepositories.VehicleRepository;
+import com.fariz.carrental.dao.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,10 +1,10 @@
 package com.fariz.carrental.services;
 
-import com.fariz.carrental.dto.*;
+import com.fariz.carrental.jparepositories.*;
 import com.fariz.carrental.exceptionhandling.NoSuchAgency;
 import com.fariz.carrental.messages.Message;
 import com.fariz.carrental.messages.MessageType;
-import com.fariz.carrental.model.*;
+import com.fariz.carrental.dao.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

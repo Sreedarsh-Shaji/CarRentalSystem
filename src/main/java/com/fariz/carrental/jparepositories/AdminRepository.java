@@ -1,6 +1,6 @@
-package com.fariz.carrental.dto;
+package com.fariz.carrental.jparepositories;
 
-import com.fariz.carrental.model.Admin;
+import com.fariz.carrental.dao.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AdminRepository extends JpaRepository<Admin,Integer> {

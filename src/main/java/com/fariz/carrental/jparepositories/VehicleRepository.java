@@ -1,7 +1,6 @@
-package com.fariz.carrental.dto;
+package com.fariz.carrental.jparepositories;
 
-import com.fariz.carrental.model.Trips;
-import com.fariz.carrental.model.Vehicle;
+import com.fariz.carrental.dao.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VehicleRepository extends JpaRepository<Vehicle,Integer> {

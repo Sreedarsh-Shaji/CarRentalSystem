@@ -1,4 +1,4 @@
-package com.fariz.carrental.model;
+package com.fariz.carrental.dao;
 
 import lombok.*;
 

@@ -1,9 +1,10 @@
-package com.fariz.carrental.model;
+package com.fariz.carrental.dao;
 
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,7 +16,7 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
     @Setter
-    private int adminId;
+    private UUID adminId;
 
     @Getter
     @Setter

@@ -1,9 +1,8 @@
-package com.fariz.carrental.model;
+package com.fariz.carrental.dao;
 
 import lombok.*;
 
 import javax.persistence.*;
-import java.security.PrivateKey;
 import java.util.Date;
 
 @NoArgsConstructor
