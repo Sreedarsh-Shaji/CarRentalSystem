@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,7 +15,7 @@ public class User {
     @Getter @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int userId;
+    private UUID userId;
 
     @Getter @Setter
     private String name;

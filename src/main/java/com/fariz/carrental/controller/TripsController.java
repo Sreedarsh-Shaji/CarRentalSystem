@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "api/v1/trips")
@@ -34,7 +35,7 @@ public class TripsController {
     }
 
 
-    //Creates set of agencies
+    //Creates set of trips
     @PostConstruct
     protected void createDummyTrips()
     {
@@ -48,8 +49,8 @@ public class TripsController {
             Office office1 = new Office(1,agency1,"Kollam","9876543210","9876543210","mail@gmail.com","asd123","8.9125415,76.6297183",new Date());
             Office office2 = new Office(2,agency2,"Trivandrum","9876543210","9876543210","mail@gmail.com","asd123","8.9125415,76.6297183",new Date());
 
-            User user1 = (new User(1,"Aneesh","admin@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
-            User user2 = (new User(2,"Anju","Anju@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
+            User user1 = (new User(UUID.randomUUID(),"Aneesh","admin@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
+            User user2 = (new User(UUID.randomUUID(),"Anju","Anju@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
 
             Vehicle vehicle1 = (new Vehicle(1,"Innova","Toyota","KL-10-H-21","12112840","12112840","Diesal",35000,120,new Date(),"false",office1));
             Vehicle vehicle2 = (new Vehicle(2,"Ethios","Toyota","KL-10-H-22","12112840","12112840","Diesal",35000,120,new Date(),"false",office2));

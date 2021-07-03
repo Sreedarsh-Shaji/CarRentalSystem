@@ -1,5 +1,6 @@
 package com.fariz.carrental.controller;
 
+import com.fariz.carrental.dao.Admin;
 import com.fariz.carrental.messages.Message;
 import com.fariz.carrental.messages.MessageType;
 import com.fariz.carrental.dao.Agency;
@@ -7,6 +8,7 @@ import com.fariz.carrental.dao.Office;
 import com.fariz.carrental.dao.Trips;
 import com.fariz.carrental.services.*;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -150,6 +152,26 @@ public class AgencyController {
             tripDetails.put(temp.getTripId()+"",trip_data);
         }
         return tripDetails;
+    }
+
+    //Agency authentication
+    @ApiOperation( value = "Agency authentication")
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET , value = "/agencyLogin/{username}/{password}")
+    public Agency agencyLogIn(@PathVariable String username, @PathVariable String password)
+    {
+        List<Agency> agencies = adminService.adminSeeAgencyList();
+        Agency retAgency = null;
+
+        for (Agency temp : agencies)
+        {
+            if(temp.getEmail().equals(username)
+                    && temp.getPassword().equals(password))
+            {
+                retAgency = temp;
+            }
+        }
+        return retAgency;
     }
 
     //Creates set of dummy agencies

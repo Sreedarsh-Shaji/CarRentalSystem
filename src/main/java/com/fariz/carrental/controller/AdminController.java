@@ -88,7 +88,7 @@ public class AdminController {
     }
 
     //Approve an agency
-    @RequestMapping(method = RequestMethod.GET , value = "/approveAgency/{id}")
+    @RequestMapping(method = RequestMethod.PUT , value = "/approveAgency/{id}")
     public Message approveAgency(@PathVariable int id)
     {
         service.approveAgency(id);

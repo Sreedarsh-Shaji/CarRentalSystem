@@ -1,20 +1,26 @@
 package com.fariz.carrental.controller;
 
+import com.fariz.carrental.dao.Admin;
 import com.fariz.carrental.dao.User;
 import com.fariz.carrental.services.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
+@Slf4j
 @RestController
+@Api( value = "User Controller")
+@CrossOrigin(origins = "http://localhost:3010", maxAge = 3600)
 @RequestMapping(value = "api/v1/user")
 public class UserController {
 
@@ -33,6 +39,24 @@ public class UserController {
         return "Say hai!!!";
     }
 
+    @ApiOperation( value = "user authentication")
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET , value = "/userlogin/{username}/{password}")
+    public User adminLogIn(@PathVariable String username,@PathVariable String password)
+    {
+        List<User> users = userService.getAllUsers();
+        User retUser = null;
+
+        for (User temp : users)
+        {
+            if(temp.getEmail().equals(username)
+                    && temp.getPassword().equals(password))
+            {
+                retUser = temp;
+            }
+        }
+        return retUser;
+    }
 
     //Creates set of users
     @PostConstruct
@@ -42,11 +66,11 @@ public class UserController {
 
             List<User> users = new ArrayList<User>();
 
-            users.add(new User(1,"Aneesh","admin@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
-            users.add(new User(2,"Anju","Anju@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
-            users.add(new User(3,"Sumi","Sumi@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
-            users.add(new User(4,"Sudheesh","sudheesh@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
-            users.add(new User(5,"Sreedarsh","sreedarsh@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
+            users.add(new User(UUID.randomUUID(),"Aneesh","admin@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
+            users.add(new User(UUID.randomUUID(),"Anju","Anju@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
+            users.add(new User(UUID.randomUUID(),"Sumi","Sumi@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
+            users.add(new User(UUID.randomUUID(),"Sudheesh","sudheesh@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
+            users.add(new User(UUID.randomUUID(),"Sreedarsh","sreedarsh@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
 
             users.forEach(temp -> userService.addNewAgency(temp));//lambda
 
