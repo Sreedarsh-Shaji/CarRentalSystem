@@ -5,6 +5,8 @@ import com.fariz.carrental.dao.Trips;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TripsServices {
 
@@ -16,4 +18,12 @@ public class TripsServices {
         repository.save(trip);
     }
 
+    public void tripDelete(int id) {
+        repository.deleteById(id);
+    }
+
+    public List<Trips> seeAllTrips()
+    {
+        return repository.findAll();
+    }
 }

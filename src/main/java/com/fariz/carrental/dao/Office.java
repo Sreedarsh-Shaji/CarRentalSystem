@@ -15,6 +15,7 @@ public class Office {
     @Id
     private int officeId;
 
+
     @Getter @Setter
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Agency", referencedColumnName = "agencyId")
@@ -41,5 +42,6 @@ public class Office {
     @Getter @Setter
     @Temporal(TemporalType.TIMESTAMP)
     Date creationDateTime;
+
 
 }

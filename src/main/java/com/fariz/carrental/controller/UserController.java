@@ -1,6 +1,7 @@
 package com.fariz.carrental.controller;
 
 import com.fariz.carrental.dao.Admin;
+import com.fariz.carrental.dao.Trips;
 import com.fariz.carrental.dao.User;
 import com.fariz.carrental.services.*;
 import io.swagger.annotations.Api;
@@ -39,6 +40,14 @@ public class UserController {
         return "Say hai!!!";
     }
 
+
+    @RequestMapping(method = RequestMethod.POST, value = "/usersignup")
+    private void addAdmins(@RequestBody User user){
+        userService.signUpUser(user);
+    }
+
+
+
     @ApiOperation( value = "user authentication")
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET , value = "/userlogin/{username}/{password}")
@@ -58,6 +67,12 @@ public class UserController {
         return retUser;
     }
 
+    @GetMapping("/user_see_all_trips")
+    public List<Trips> viewAllTrips()
+    {
+        return tripsServices.seeAllTrips();
+    }
+
     //Creates set of users
     @PostConstruct
     protected void createDummyUsers()
@@ -66,11 +81,11 @@ public class UserController {
 
             List<User> users = new ArrayList<User>();
 
-            users.add(new User(UUID.randomUUID(),"Aneesh","admin@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
-            users.add(new User(UUID.randomUUID(),"Anju","Anju@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
-            users.add(new User(UUID.randomUUID(),"Sumi","Sumi@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
-            users.add(new User(UUID.randomUUID(),"Sudheesh","sudheesh@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
-            users.add(new User(UUID.randomUUID(),"Sreedarsh","sreedarsh@carrentals.com","Admin123","9876543210","License12/A/1","false",new Date(),new Date()));
+            users.add(new User(1,"Aneesh","admin@carrentals.com","Admin123","9876543210","License12/A/1","true",new Date(),new Date()));
+            users.add(new User(2,"Anju","Anju@carrentals.com","Admin123","9876543210","License12/A/1","true",new Date(),new Date()));
+            users.add(new User(2,"Sumi","Sumi@carrentals.com","Admin123","9876543210","License12/A/1","true",new Date(),new Date()));
+            users.add(new User(3,"Sudheesh","sudheesh@carrentals.com","Admin123","9876543210","License12/A/1","true",new Date(),new Date()));
+            users.add(new User(4,"Sreedarsh","sreedarsh@carrentals.com","Admin123","9876543210","License12/A/1","true",new Date(),new Date()));
 
             users.forEach(temp -> userService.addNewAgency(temp));//lambda
 

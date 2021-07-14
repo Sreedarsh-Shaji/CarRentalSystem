@@ -95,6 +95,8 @@ public class AdminController {
         return Message.getMessage();
     }
 
+    //updates user status
+
     @ApiOperation( value = "Admin authentication")
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET , value = "/adminLogin/{username}/{password}")
@@ -113,6 +115,33 @@ public class AdminController {
         }
         return retAdmin;
     }
+    //delete agency
+    @RequestMapping(method = RequestMethod.DELETE,value = "/agency/{id}")
+    private void deleteAgency(@PathVariable int id){
+        agencyService.deleteAgency(id);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE,value = "/user/{id}")
+    private void deleteUsers(@PathVariable int id){
+        userService.deleteUser(id);
+    }
+
+    @RequestMapping(method =  RequestMethod.DELETE,value = "/trip/{id}")
+    private void tripDelete(@PathVariable int id){
+        tripsServices.tripDelete(id);
+    }
+
+    @RequestMapping(method =  RequestMethod.DELETE,value = "/officers/{id}")
+    private void officeDelete(@PathVariable int id){
+        officesService.officeDelete(id);
+    }
+
+
+    @RequestMapping(method =  RequestMethod.DELETE,value = "/vehicle/{id}")
+    private void vehicleDelete(@PathVariable int id){
+        vehicleService.vehicleDelete(id);
+    }
+
 
     //Creates set of admins
     @PostConstruct
@@ -122,11 +151,11 @@ public class AdminController {
 
             List<Admin> admins = new ArrayList<Admin>();
 
-            admins.add(new Admin(UUID.randomUUID() ,"Super Admin","admin@carrentals.com","Admin123",new Date(),new Date()));
-            admins.add(new Admin(UUID.randomUUID(),"Anju","Anju@carrentals.com","Anju123",new Date(),new Date()));
-            admins.add(new Admin(UUID.randomUUID(),"Sumi","Sumi@carrentals.com","Sumi123",new Date(),new Date()));
-            admins.add(new Admin(UUID.randomUUID(),"Sudheesh","sudheesh@carrentals.com","Sudheesh123",new Date(),new Date()));
-            admins.add(new Admin(UUID.randomUUID(),"Sreedarsh","sreedarsh@carrentals.com","sreedarsh123",new Date(),new Date()));
+            admins.add(new Admin(1 ,"Super Admin","admin@carrentals.com","Admin123",new Date(),new Date()));
+            admins.add(new Admin(2,"Anju","Anju@carrentals.com","Anju123",new Date(),new Date()));
+            admins.add(new Admin(3,"Sumi","Sumi@carrentals.com","Sumi123",new Date(),new Date()));
+            admins.add(new Admin(4,"Sudheesh","sudheesh@carrentals.com","Sudheesh123",new Date(),new Date()));
+            admins.add(new Admin(4,"Sreedarsh","sreedarsh@carrentals.com","sreedarsh123",new Date(),new Date()));
 
             admins.forEach(temp -> service.save(temp));//lambda
 

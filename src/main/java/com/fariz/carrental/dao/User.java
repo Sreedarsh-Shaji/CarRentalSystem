@@ -15,7 +15,7 @@ public class User {
     @Getter @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID userId;
+    private int userId;
 
     @Getter @Setter
     private String name;

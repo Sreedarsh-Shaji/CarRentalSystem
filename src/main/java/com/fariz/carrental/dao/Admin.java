@@ -16,7 +16,7 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
     @Setter
-    private UUID adminId;
+    private int adminId;
 
     @Getter
     @Setter

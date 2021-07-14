@@ -25,4 +25,14 @@ public class UserService {
         return repository.findAll();
     }
 
+
+    public void deleteUser(int id) {
+        repository.deleteById(id);
+    }
+
+    public void signUpUser(User user) {
+
+        repository.save(user);
+
+    }
 }

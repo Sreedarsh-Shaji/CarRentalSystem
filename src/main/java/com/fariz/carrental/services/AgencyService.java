@@ -1,5 +1,6 @@
 package com.fariz.carrental.services;
 
+import com.fariz.carrental.dao.Admin;
 import com.fariz.carrental.jparepositories.AgencyRepository;
 import com.fariz.carrental.jparepositories.OfficesRepository;
 import com.fariz.carrental.messages.Message;
@@ -23,7 +24,9 @@ public class AgencyService {
     @Autowired
     OfficesRepository officesRepository;
 
-    public void addNewAgency(Agency temp)
+
+
+    public void signUpAgency(Agency temp)
     {
         repository.save(temp);
     }
@@ -32,6 +35,8 @@ public class AgencyService {
     {
         return repository.findById(id);
     }
+
+
 
     public Agency getAgency(String email)
     {
@@ -99,4 +104,15 @@ public class AgencyService {
         Message.setMessage(MessageType.SUCCESS,"Added office successfully",new Date());
     }
 
+    public void deleteAgency(int id) {
+        repository.deleteById(id);
+    }
+
+    public void agencySignUp(Agency agency) {
+        repository.save(agency);
+    }
+    public List<Office> getOfficesByAgency()
+    {
+       return  officesRepository.findAll();
+    }
 }

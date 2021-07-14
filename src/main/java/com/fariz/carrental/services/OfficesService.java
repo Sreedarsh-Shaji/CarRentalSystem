@@ -79,4 +79,7 @@ public class OfficesService {
         }
     }
 
+    public void officeDelete(int id) {
+        repository.deleteById(id);
+    }
 }

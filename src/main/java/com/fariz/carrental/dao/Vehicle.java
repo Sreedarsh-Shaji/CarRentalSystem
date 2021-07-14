@@ -49,8 +49,6 @@ public class Vehicle {
     private String status;
 
     @Getter @Setter
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Office", referencedColumnName = "officeId")
-    private Office currentOffice;
+    private int currentOffice;
 
 }

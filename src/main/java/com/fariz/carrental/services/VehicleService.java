@@ -16,4 +16,7 @@ public class VehicleService {
         repository.save(vehicle);
     }
 
+    public void vehicleDelete(int id) {
+        repository.deleteById(id);
+    }
 }

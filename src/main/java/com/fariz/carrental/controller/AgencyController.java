@@ -1,11 +1,8 @@
 package com.fariz.carrental.controller;
 
-import com.fariz.carrental.dao.Admin;
+import com.fariz.carrental.dao.*;
 import com.fariz.carrental.messages.Message;
 import com.fariz.carrental.messages.MessageType;
-import com.fariz.carrental.dao.Agency;
-import com.fariz.carrental.dao.Office;
-import com.fariz.carrental.dao.Trips;
 import com.fariz.carrental.services.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,6 +18,7 @@ import java.util.*;
 @RestController
 @RequestMapping(value = "api/v1/agency")
 @Api("Agency APIs")
+@CrossOrigin(origins = "http://localhost:3010")
 public class AgencyController {
 
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
@@ -32,8 +30,14 @@ public class AgencyController {
     @Autowired UserService userService;
     @Autowired VehicleService vehicleService;
 
+
+    @RequestMapping(method = RequestMethod.POST, value = "/admins")
+    private void signUpAgency(@RequestBody Agency agency){
+        agencyService.signUpAgency(agency);
+    }
+
     //Signup to the system without verification
-    @PostMapping("/signup")
+   /* @PostMapping("/signup")
     public Message agencySignup(@RequestBody Agency agency)
     {
         if (!agencyService.isDuplicateEmail(agency.getEmail()))
@@ -45,7 +49,9 @@ public class AgencyController {
             Message.setMessage(MessageType.FAILURE,"Duplicate Email",new Date());
         }
         return Message.getMessage();
-    }
+    }*/
+
+
 
     //Login to the system and set session variable
     @PostMapping("/login")
@@ -135,13 +141,13 @@ public class AgencyController {
 
     //Gets the list of all trips
     @RequestMapping(method = RequestMethod.GET , value = "/viewAllTrips")
-    public Map<String,Object> getAllTrips(HttpSession session)
+    public List<Trips> getAllTrips(HttpSession session)
     {
         Map<String,Object> tripDetails = new HashMap<String, Object>();
         List<Trips> trips = adminService.adminSeeTripsList();
         Agency agency = (Agency)session.getAttribute("ActiveAgency");
 
-        for (Trips temp:trips)
+        /*for (Trips temp:trips)
         {
             Map<String,Object> trip_data =  new HashMap<String, Object>();
             if(temp.getAgency().getEmail().equals(agency.getEmail())) {
@@ -150,8 +156,8 @@ public class AgencyController {
                 trip_data.put("end_location", officesService.getOffice(temp.getPickupOfficeLocation()));
             }
             tripDetails.put(temp.getTripId()+"",trip_data);
-        }
-        return tripDetails;
+        }*/
+        return trips;
     }
 
     //Agency authentication
@@ -173,6 +179,10 @@ public class AgencyController {
         }
         return retAgency;
     }
+    @RequestMapping(method = RequestMethod.POST, value = "/agencySignup")
+    private void agencySignUp(@RequestBody Agency agency){
+        agencyService.agencySignUp(agency);
+    }
 
     //Creates set of dummy agencies
     @PostConstruct
@@ -187,7 +197,7 @@ public class AgencyController {
             agencies.add(new Agency(8,"Sudheesh","sudheesh@carrentals.com","Sudheesh123","9876543210",new Date(),new Date(),true));
             agencies.add(new Agency(9,"Sreedarsh","sreedarsh@carrentals.com","sreedarsh123","9876543210",new Date(),new Date(),true));
 
-            agencies.forEach(temp -> agencyService.addNewAgency(temp));//lambda
+            agencies.forEach(temp -> agencyService.signUpAgency(temp));//lambda
 
             logger.info("Added 5 admins using @PostConstruct annotation!!!");
         }
@@ -197,5 +207,23 @@ public class AgencyController {
         }
     }
 
+    @PostMapping("/addVehicle")
+    public boolean addVehicle(@RequestBody Vehicle v)
+    {
+         try {
+             vehicleService.addNewVehicle(v);
+             return true;
+         }
+         catch (Exception ex)
+         {
+             logger.info(ex.getMessage());
+             return false;
+         }
+    }
+
+    @GetMapping("/office")
+    private List<Office> getOfficeByAgencyId(){
+        return agencyService.getOfficesByAgency();
+    }
 
 }

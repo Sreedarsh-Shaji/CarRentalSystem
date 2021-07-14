@@ -1,5 +1,6 @@
 package com.fariz.carrental.services;
 
+import com.fariz.carrental.exceptionhandling.NoSuchUser;
 import com.fariz.carrental.jparepositories.*;
 import com.fariz.carrental.exceptionhandling.NoSuchAgency;
 import com.fariz.carrental.messages.Message;
@@ -7,16 +8,22 @@ import com.fariz.carrental.messages.MessageType;
 import com.fariz.carrental.dao.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @NoArgsConstructor
 @AllArgsConstructor
 public class AdminService {
+
+    private static final Logger logger = LoggerFactory.getLogger(AdminService.class);
+
 
     @Autowired
     private AdminRepository repo;
@@ -37,6 +44,7 @@ public class AdminService {
     {
         return repo.findAll();
     }
+
     public void save(Admin admin){ repo.save(admin); }
 
     public List<Agency> adminSeeAgencyList()
@@ -81,5 +89,6 @@ public class AdminService {
             }
         }
     }
+
 
 }

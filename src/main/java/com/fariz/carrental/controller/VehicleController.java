@@ -50,12 +50,12 @@ public class VehicleController {
             Office office1 = new Office(1,agency1,"Kollam","9876543210","9876543210","mail@gmail.com","asd123","8.9125415,76.6297183",new Date());
             Office office2 = new Office(2,agency2,"Trivandrum","9876543210","9876543210","mail@gmail.com","asd123","8.9125415,76.6297183",new Date());
 
-            vehicles.add(new Vehicle(1,"Innova","Toyota","KL-10-H-21","12112840","12112840","Diesal",35000,120,new Date(),"false",office1));
-            vehicles.add(new Vehicle(2,"Ethios","Toyota","KL-10-H-22","12112840","12112840","Diesal",35000,120,new Date(),"false",office1));
-            vehicles.add(new Vehicle(3,"Figo Aspire","Ford","KL-10-H-23","12112840","12112840","Diesal",35000,120,new Date(),"false",office1));
-            vehicles.add(new Vehicle(4,"Xcent","hyundai","KL-10-H-24","12112840","12112840","Diesal",35000,120,new Date(),"false",office1));
-            vehicles.add(new Vehicle(5,"Enjoy","chevrolet ","KL-10-H-25","12112840","12112840","Diesal",35000,120,new Date(),"false",office1));
-            vehicles.add(new Vehicle(6,"Dezire","Suzuki","KL-10-H-26","12112840","12112840","Diesal",35000,120,new Date(),"false",office1));
+            vehicles.add(new Vehicle(1,"Innova","Toyota","KL-10-H-21","12112840","12112840","Diesal",35000,120,new Date(),"false",1));
+            vehicles.add(new Vehicle(2,"Ethios","Toyota","KL-10-H-22","12112840","12112840","Diesal",35000,120,new Date(),"false",1));
+            vehicles.add(new Vehicle(3,"Figo Aspire","Ford","KL-10-H-23","12112840","12112840","Diesal",35000,120,new Date(),"false",1));
+            vehicles.add(new Vehicle(4,"Xcent","hyundai","KL-10-H-24","12112840","12112840","Diesal",35000,120,new Date(),"false",1));
+            vehicles.add(new Vehicle(5,"Enjoy","chevrolet ","KL-10-H-25","12112840","12112840","Diesal",35000,120,new Date(),"false",1));
+            vehicles.add(new Vehicle(6,"Dezire","Suzuki","KL-10-H-26","12112840","12112840","Diesal",35000,120,new Date(),"false",1));
 
             vehicles.forEach(temp -> vehicleService.addNewVehicle(temp));//lambda
 
