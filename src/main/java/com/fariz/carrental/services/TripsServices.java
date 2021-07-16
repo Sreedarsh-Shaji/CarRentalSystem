@@ -19,7 +19,9 @@ public class TripsServices {
     }
 
     public void tripDelete(int id) {
-        repository.deleteById(id);
+        Trips trips = repository.findById(id).get();
+        trips.setActive(false);
+        repository.save(trips);
     }
 
     public List<Trips> seeAllTrips()

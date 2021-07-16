@@ -53,4 +53,7 @@ public class Trips {
     @Temporal(TemporalType.TIMESTAMP)
     Date creationDateTime;
 
+    @Getter @Setter
+    private boolean active =  true;
+
 }
