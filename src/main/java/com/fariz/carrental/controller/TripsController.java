@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "api/v1/trips")
@@ -45,6 +42,51 @@ public class TripsController {
             return false;
         }
     }
+
+    @GetMapping("/see-all-offices")
+    public Set<String> getStartingOffices()
+    {
+        List<Office> offices = officesService.getAllOffices();
+        Set<String> locations = new HashSet<String>();
+
+        for (Office temp: offices) {
+            locations.add(temp.getOfficeAddress());
+        }
+
+        return locations;
+    }
+
+    @GetMapping("/see-all-offices/{officeLoc}")
+    public Set<Agency> getAgencyBasedOnOfficeName(@PathVariable String officeLoc)
+    {
+        List<Office> offices = officesService.getAllOffices();
+        Set<Agency> agencies = new HashSet<Agency>();
+
+        for (Office temp: offices) {
+            if(temp.getOfficeAddress().equals(officeLoc)){
+                agencies.add(temp.getAgency());
+            }
+        }
+
+        return agencies;
+    }
+
+    @GetMapping("/see-office-from-agency/{agencyName}")
+    public Set<Office> getOfficeBasedOnAgency(@PathVariable int agencyName)
+    {
+        List<Office> offices = officesService.getAllOffices();
+        Set<Office> resOffices = new HashSet<Office>();
+
+        for (Office temp: offices) {
+            if(temp.getAgency().getAgencyId() == (agencyName)){
+                resOffices.add(temp);
+            }
+        }
+
+        return resOffices;
+    }
+
+
 
     //Creates set of trips
     @PostConstruct

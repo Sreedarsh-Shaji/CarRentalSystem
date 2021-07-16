@@ -115,4 +115,8 @@ public class AgencyService {
     {
        return  officesRepository.findAll();
     }
+
+    public List<Agency> getAllAgencies() {
+        return repository.findAll();
+    }
 }

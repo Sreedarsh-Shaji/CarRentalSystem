@@ -19,6 +19,8 @@ public class OfficesService {
     @Autowired
     OfficesRepository repository;
 
+    public List<Office> getAllOffices(){ return repository.findAll(); }
+
     public void addNewOffice(Office temp)
     {
         repository.save(temp);
