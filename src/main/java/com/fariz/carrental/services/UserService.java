@@ -1,6 +1,7 @@
 package com.fariz.carrental.services;
 
 import com.fariz.carrental.dao.Admin;
+import com.fariz.carrental.dao.Trips;
 import com.fariz.carrental.jparepositories.UserRepository;
 import com.fariz.carrental.dao.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,8 @@ public class UserService {
 
 
     public void deleteUser(int id) {
-        repository.deleteById(id);
+        User users = repository.findById(id).get();
+        repository.save(users);
     }
 
     public void signUpUser(User user) {

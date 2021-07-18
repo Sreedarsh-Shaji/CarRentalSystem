@@ -121,9 +121,17 @@ public class AdminController {
         agencyService.deleteAgency(id);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE,value = "/user/{id}")
-    private void deleteUsers(@PathVariable int id){
-        userService.deleteUser(id);
+    @DeleteMapping("/deleteUser/{id}")
+    protected boolean deleteUser(@PathVariable int id){
+        try{
+            userService.deleteUser(id);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            logger.info("[Sreedarsh Written] : "+ ex);
+            return false;
+        }
     }
 
     @RequestMapping(method =  RequestMethod.DELETE,value = "/trip/{id}")

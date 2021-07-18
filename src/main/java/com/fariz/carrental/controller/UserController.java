@@ -3,6 +3,7 @@ package com.fariz.carrental.controller;
 import com.fariz.carrental.dao.Admin;
 import com.fariz.carrental.dao.Trips;
 import com.fariz.carrental.dao.User;
+import com.fariz.carrental.dao.Vehicle;
 import com.fariz.carrental.services.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -72,6 +73,28 @@ public class UserController {
     {
         return tripsServices.seeAllTrips();
     }
+
+    @RequestMapping(method = RequestMethod.POST,value = "/addtrip")
+    public void addTopic(@RequestBody Trips trips){
+        tripsServices.addNewTrip(trips);
+    }
+
+    @GetMapping("/user_see_vehicle_by_location/{officeId}")
+    public List<Vehicle> viewVehicleByLocation(@PathVariable int officeId)
+    {
+        List<Vehicle> vehicles = vehicleService.findAllVehicles();
+        List<Vehicle> result = new ArrayList<>();
+
+        for (Vehicle v:vehicles ) {
+            if(v.getCurrentOffice() == officeId)
+            {
+                result.add(v);
+            }
+        }
+
+        return result;
+    }
+
 
     //Creates set of users
     @PostConstruct

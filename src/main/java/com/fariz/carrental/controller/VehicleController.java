@@ -36,6 +36,7 @@ public class VehicleController {
     }
 
 
+
     //Creates set of users
     @PostConstruct
     protected void createDummyUsers()

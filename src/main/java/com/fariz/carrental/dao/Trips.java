@@ -32,10 +32,10 @@ public class Trips {
     private Vehicle vehicle;
 
     @Getter @Setter
-    private int pickupOfficeLocation;
+    private String pickupOfficeLocation;
 
     @Getter @Setter
-    private int returnOfficeLocation;
+    private String returnOfficeLocation;
 
     @Getter @Setter
     private Date startDate;

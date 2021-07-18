@@ -108,11 +108,11 @@ public class TripsController {
             Vehicle vehicle1 = (new Vehicle(1,"Innova","Toyota","KL-10-H-21","12112840","12112840","Diesal",35000,120,new Date(),"false",1));
             Vehicle vehicle2 = (new Vehicle(2,"Ethios","Toyota","KL-10-H-22","12112840","12112840","Diesal",35000,120,new Date(),"false",2));
 
-            trips.add(new Trips(1,user1,agency1,vehicle1,1,3,new Date(),new Date(),2,"Good",new Date(),true));
-            trips.add(new Trips(2,user2,agency2,vehicle2,2,1,new Date(),new Date(),2,"Good",new Date(),true));
-            trips.add(new Trips(3,user1,agency1,vehicle1,3,2,new Date(),new Date(),2,"Good",new Date(),true));
-            trips.add(new Trips(4,user2,agency2,vehicle2,2,3,new Date(),new Date(),2,"Good",new Date(),true));
-            trips.add(new Trips(5,user1,agency1,vehicle1,1,3,new Date(),new Date(),2,"Good",new Date(),true));
+            trips.add(new Trips(1,user1,agency1,vehicle1,"Kollam","idukki",new Date(),new Date(),2,"Good",new Date(),true));
+            trips.add(new Trips(2,user2,agency2,vehicle2,"idukki","kollam",new Date(),new Date(),2,"Good",new Date(),true));
+            trips.add(new Trips(3,user1,agency1,vehicle1,"kollam","alappuzha",new Date(),new Date(),2,"Good",new Date(),true));
+            trips.add(new Trips(4,user2,agency2,vehicle2,"idukki","alappuzha",new Date(),new Date(),2,"Good",new Date(),true));
+            trips.add(new Trips(5,user1,agency1,vehicle1,"kollam","kollam",new Date(),new Date(),2,"Good",new Date(),true));
 
             trips.forEach(temp -> tripsServices.addNewTrip(temp));//lambda
 

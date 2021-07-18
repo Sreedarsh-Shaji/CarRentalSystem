@@ -5,6 +5,8 @@ import com.fariz.carrental.dao.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class VehicleService {
 
@@ -18,5 +20,10 @@ public class VehicleService {
 
     public void vehicleDelete(int id) {
         repository.deleteById(id);
+    }
+
+    public List<Vehicle> findAllVehicles()
+    {
+        return repository.findAll();
     }
 }
